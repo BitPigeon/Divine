@@ -1,3 +1,9 @@
+#include <vector>
+#include <string>
+#include <iostream>
+
+#include "token/token.h"
+
 #include "lexer.h"
 
 std::vector<Token::Token*> Lexer::tokenize ( const std::string& code ) {
@@ -89,9 +95,34 @@ std::vector<Token::Token*> Lexer::tokenize ( const std::string& code ) {
 
             pos++;
 
-        } else if ( src[pos] == '>' || src[pos] == '<' || src[pos] == '=' ) {
-            tokens.push_back(new Token::Token(Token::Type::ComparisonOperator, std::string(1, src[pos]), pos, pos + 1));
+        } else if ( src[pos] == '>' || src[pos] == '<' || ( pos + 1 < src.size() && src[pos] == '=' && src[pos + 1] == '=' ) ) {
+            std::string lexeme(1, src[pos]);
 
+            pos++;
+
+            if ( pos < src.size() && src[pos] == '=' ) {
+                lexeme += src[pos];
+
+                pos++;
+
+            }
+
+            tokens.push_back(new Token::Token(Token::Type::LogicalOperator, lexeme, pos - lexeme.size(), pos));
+
+            pos++;
+
+        } else if ( pos + 1 < src.size() && ( src[pos] == '&' && src[pos + 1] == '&' ) || ( src[pos] == '|' && src[pos + 1] == '|' ) ) {
+            std::string lexeme(1, src[pos]);
+
+            pos++;
+
+            lexeme += src[pos];
+
+            pos++;
+
+            tokens.push_back(new Token::Token(Token::Type::LogicalOperator, lexeme, pos - 2, pos));
+
+        } else {
             pos++;
 
         }

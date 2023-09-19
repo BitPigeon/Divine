@@ -15,13 +15,17 @@ namespace Token {
         Character,
 
         BinaryOperator,
-        ComparisonOperator,
+        LogicalOperator,
 
         EndOfFile,
 
     };
 
-    std::unordered_map<std::string, Type> Reserved = {};
+    const std::unordered_map<std::string, Type> Reserved = {
+        { "and", Type::LogicalOperator },
+        { "or", Type::LogicalOperator },
+
+    };
 
     class Token {
       public:
