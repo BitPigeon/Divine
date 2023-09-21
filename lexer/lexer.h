@@ -6,6 +6,10 @@
 
 #include "token/token.h"
 
+using namespace std;
+using namespace Token;
+
+
 class Lexer {
   public:
     Lexer ( ) { }

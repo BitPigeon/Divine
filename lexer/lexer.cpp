@@ -6,6 +6,9 @@
 
 #include "lexer.h"
 
+using namespace std;
+using namespace Token;
+
 std::vector<Token::Token*> Lexer::tokenize ( const std::string& code ) {
     src = code;
     pos = 0;
