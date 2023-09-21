@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+using namespace std;
+
 namespace Node {
     enum class Type {
         Program,
@@ -167,14 +169,14 @@ namespace Node {
       public:
         Type type = Type::Character;
 
-        std::string value;
+        char value;
 
         std::string raw;
 
         int start;
         int end;
 
-        Character ( std::string value, std::string raw, int start, int end ) : value(value), raw(raw), start(start), end(end) { }
+        Character ( char value, std::string raw, int start, int end ) : value(value), raw(raw), start(start), end(end) { }
 
         ~Character ( ) { }
 
