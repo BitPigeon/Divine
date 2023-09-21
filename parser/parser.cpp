@@ -5,6 +5,10 @@
 
 #include "parser.h"
 
+using namespace std;
+using namespace Node;
+using namespace Token;
+
 Node::Literal* Parser::parsePrimaryExpression ( ) {
     if ( tokens[pos]->type == Token::Type::Integer || tokens[pos]->type == Token::Type::Float ) {
         Node::Literal* number = new Node::Number(std::stof(tokens[pos]->lexeme), tokens[pos]->lexeme, tokens[pos]->start, tokens[pos]->end);

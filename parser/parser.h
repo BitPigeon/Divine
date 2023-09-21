@@ -8,6 +8,10 @@
 #include "../lexer/token/token.h"
 #include "node/node.h"
 
+using namespace std;
+using namespace Token;
+using namespace Node;
+
 class Parser {
   public:
     Parser ( ) { }
